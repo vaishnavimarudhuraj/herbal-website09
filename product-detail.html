@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details — HerbalNature</title>
+    <meta name="description" content="View product details, reviews, and related products.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/products.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .detail-page {
+            padding-top: calc(var(--header-height) + var(--space-2xl));
+            min-height: 100vh;
+        }
+
+        .detail-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3xl);
+            align-items: start;
+            margin-bottom: var(--space-4xl);
+        }
+
+        .detail-image {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 450px;
+            font-size: 10rem;
+            position: relative;
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+        }
+
+        .detail-image .badge {
+            position: absolute;
+            top: var(--space-lg);
+            left: var(--space-lg);
+        }
+
+        .detail-info {
+            padding: var(--space-lg) 0;
+        }
+
+        .detail-category {
+            font-size: var(--fs-sm);
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        .detail-title {
+            font-family: var(--font-heading);
+            font-size: var(--fs-3xl);
+            margin-bottom: var(--space-md);
+        }
+
+        .detail-rating {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+            font-size: var(--fs-sm);
+            color: var(--text-muted);
+        }
+
+        .detail-price {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+
+        .detail-price .current {
+            font-size: var(--fs-3xl);
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .detail-price .original {
+            font-size: var(--fs-lg);
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .detail-price .discount {
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--error);
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: var(--fs-sm);
+            font-weight: 700;
+        }
+
+        .detail-desc {
+            color: var(--text-secondary);
+            line-height: 1.9;
+            margin-bottom: var(--space-xl);
+            font-size: var(--fs-md);
+        }
+
+        .detail-meta {
+            display: flex;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            padding: var(--space-lg);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+        }
+
+        .detail-meta div {
+            text-align: center;
+            flex: 1;
+        }
+
+        .detail-meta .val {
+            font-weight: 700;
+            font-size: var(--fs-lg);
+            color: var(--primary);
+            display: block;
+        }
+
+        .detail-meta .lbl {
+            font-size: var(--fs-xs);
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .qty-selector {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+
+        .qty-selector label {
+            font-weight: 600;
+            font-size: var(--fs-sm);
+        }
+
+        .detail-actions {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+
+        .related-section {
+            margin-top: var(--space-4xl);
+        }
+
+        .related-section h2 {
+            font-family: var(--font-heading);
+            font-size: var(--fs-2xl);
+            margin-bottom: var(--space-xl);
+        }
+
+        @media(max-width:768px) {
+            .detail-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-image {
+                min-height: 300px;
+                font-size: 6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo"><i data-lucide="leaf"></i><span>HerbalNature</span></a>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a><a href="products.html">Products</a><a
+                    href="community.html">Community</a><a href="order-tracking.html">Track Order</a><a href="login.html"
+                    class="nav-auth-link">Login</a><a href="admin.html" class="nav-admin-link"
+                    style="display:none;">Admin</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="theme-toggle"><i data-lucide="moon"></i></button>
+                <a href="wishlist.html" class="btn-icon"><i data-lucide="heart"></i></a>
+                <a href="cart.html" class="btn-icon nav-cart"><i data-lucide="shopping-bag"></i><span class="cart-count"
+                        style="display:none;">0</span></a>
+                <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="detail-page">
+        <div class="container">
+            <div class="detail-layout" id="detailLayout"></div>
+            <div class="related-section" id="relatedSection"></div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 HerbalNature.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const id = parseInt(new URLSearchParams(window.location.search).get('id'));
+            const p = PRODUCTS.find(x => x.id === id);
+            if (!p) { document.getElementById('detailLayout').innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:4rem">Product not found. <a href="products.html">Browse products</a></p>'; return; }
+
+            document.title = p.name + ' — HerbalNature';
+            const discount = Math.round((1 - p.price / p.originalPrice) * 100);
+            document.getElementById('detailLayout').innerHTML = `
+        <div class="detail-image">
+          ${p.badge ? `<span class="badge badge-primary">${p.badge}</span>` : ''}
+          ${p.image}
+        </div>
+        <div class="detail-info">
+          <div class="detail-category">${p.category}</div>
+          <h1 class="detail-title">${p.name}</h1>
+          <div class="detail-rating"><div class="stars">${renderStars(p.rating)}</div><span>${p.rating} rating</span><span>•</span><span>${p.reviews} reviews</span></div>
+          <div class="detail-price"><span class="current">${formatPrice(p.price)}</span><span class="original">${formatPrice(p.originalPrice)}</span><span class="discount">-${discount}% OFF</span></div>
+          <p class="detail-desc">${p.description}</p>
+          <div class="detail-meta"><div><span class="val">${p.stock}</span><span class="lbl">In Stock</span></div><div><span class="val">Free</span><span class="lbl">Shipping</span></div><div><span class="val">100%</span><span class="lbl">Organic</span></div></div>
+          <div class="qty-selector"><label>Quantity:</label><div class="qty-control"><button onclick="updateQty(-1)"><i data-lucide="minus" style="width:16px;height:16px"></i></button><span id="qtyVal">1</span><button onclick="updateQty(1)"><i data-lucide="plus" style="width:16px;height:16px"></i></button></div></div>
+          <div class="detail-actions">
+            <button class="btn btn-primary btn-lg" onclick="addToCart(${p.id}, parseInt(document.getElementById('qtyVal').textContent))"><i data-lucide="shopping-bag"></i> Add to Cart</button>
+            <button class="btn btn-secondary btn-lg" onclick="toggleWishlist(${p.id})"><i data-lucide="heart"></i> Wishlist</button>
+          </div>
+        </div>`;
+
+            // Related products
+            const related = PRODUCTS.filter(x => x.category === p.category && x.id !== p.id).slice(0, 4);
+            const rs = document.getElementById('relatedSection');
+            if (related.length && rs) {
+                rs.innerHTML = `<h2>Related Products</h2><div class="featured-grid">${related.map(r => {
+                    const d = Math.round((1 - r.price / r.originalPrice) * 100);
+                    return `<div class="product-card"><div class="product-card-image"><span style="font-size:5rem;z-index:1">${r.image}</span></div><div class="product-card-body"><div class="product-card-category">${r.category}</div><h3 class="product-card-title"><a href="product-detail.html?id=${r.id}">${r.name}</a></h3><div class="product-card-price"><span class="current">${formatPrice(r.price)}</span><span class="original">${formatPrice(r.originalPrice)}</span></div><div class="product-card-footer"><button class="btn btn-primary btn-sm" onclick="addToCart(${r.id})">Add</button><a href="product-detail.html?id=${r.id}" class="btn btn-secondary btn-sm">View</a></div></div></div>`;
+                }).join('')}</div>`;
+            }
+            lucide.createIcons();
+        });
+
+        let qty = 1;
+        function updateQty(d) {
+            qty = Math.max(1, qty + d);
+            document.getElementById('qtyVal').textContent = qty;
+        }
+    </script>
+</body>
+
+</html>

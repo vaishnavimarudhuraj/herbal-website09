@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Community — HerbalNature</title>
+    <meta name="description"
+        content="Join our farmer community. Connect with organic herbal farmers and sustainable agriculture.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/community.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo"><i data-lucide="leaf"></i><span>HerbalNature</span></a>
+            <nav class="nav-links" id="navLinks"><a href="index.html">Home</a><a href="products.html">Products</a><a
+                    href="community.html" class="active">Community</a><a href="order-tracking.html">Track Order</a><a
+                    href="login.html" class="nav-auth-link">Login</a><a href="admin.html" class="nav-admin-link"
+                    style="display:none;">Admin</a></nav>
+            <div class="nav-actions">
+                <button class="theme-toggle"><i data-lucide="moon"></i></button>
+                <a href="wishlist.html" class="btn-icon"><i data-lucide="heart"></i></a>
+                <a href="cart.html" class="btn-icon nav-cart"><i data-lucide="shopping-bag"></i><span class="cart-count"
+                        style="display:none;">0</span></a>
+                <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="community-page">
+        <div class="container">
+            <div class="community-hero reveal">
+                <h1>🌾 Farmer Community</h1>
+                <p>Join a network of passionate organic farmers. Share knowledge, grow together, and bring nature's best
+                    to the world.</p>
+                <a href="login.html" class="btn btn-gold btn-lg" id="joinBtn">Join Community</a>
+            </div>
+
+            <section class="section" style="padding-top:0">
+                <h2 class="section-title reveal">Meet Our Farmers</h2>
+                <p class="section-subtitle reveal">The brilliant people behind your herbal products</p>
+                <div class="farmers-grid stagger" id="farmersGrid"></div>
+            </section>
+
+            <!-- Membership Plans -->
+            <section class="section plans-section">
+                <h2 class="section-title reveal">Membership Plans</h2>
+                <p class="section-subtitle reveal">Choose the plan that works for you</p>
+                <div class="plans-grid stagger">
+                    <div class="plan-card">
+                        <h3>Free</h3>
+                        <div class="plan-price">$0 <span>/month</span></div>
+                        <ul class="plan-features">
+                            <li><i data-lucide="check"></i> Browse farmer profiles</li>
+                            <li><i data-lucide="check"></i> Purchase products</li>
+                            <li><i data-lucide="check"></i> Community forum access</li>
+                            <li><i data-lucide="x" style="color:var(--error)"></i> Direct farmer messaging</li>
+                            <li><i data-lucide="x" style="color:var(--error)"></i> Priority sourcing</li>
+                        </ul>
+                        <button class="btn btn-secondary" style="width:100%"
+                            onclick="showToast('Free plan is active by default!','info')">Current Plan</button>
+                    </div>
+                    <div class="plan-card featured">
+                        <h3>Pro</h3>
+                        <div class="plan-price">$9.99 <span>/month</span></div>
+                        <ul class="plan-features">
+                            <li><i data-lucide="check"></i> Everything in Free</li>
+                            <li><i data-lucide="check"></i> Direct farmer messaging</li>
+                            <li><i data-lucide="check"></i> Priority product sourcing</li>
+                            <li><i data-lucide="check"></i> Exclusive discounts (15%)</li>
+                            <li><i data-lucide="check"></i> Monthly herbal box</li>
+                        </ul>
+                        <button class="btn btn-primary" style="width:100%"
+                            onclick="showToast('Pro plan selected! Proceed to payment.','success')">Get Pro</button>
+                    </div>
+                    <div class="plan-card">
+                        <h3>Enterprise</h3>
+                        <div class="plan-price">$29.99 <span>/month</span></div>
+                        <ul class="plan-features">
+                            <li><i data-lucide="check"></i> Everything in Pro</li>
+                            <li><i data-lucide="check"></i> Bulk ordering</li>
+                            <li><i data-lucide="check"></i> Custom blending</li>
+                            <li><i data-lucide="check"></i> Farm visit scheduling</li>
+                            <li><i data-lucide="check"></i> Dedicated account manager</li>
+                        </ul>
+                        <button class="btn btn-gold" style="width:100%"
+                            onclick="showToast('Contact us for Enterprise!','info')">Contact Sales</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Benefits -->
+            <section class="section">
+                <h2 class="section-title reveal">Community Benefits</h2>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:var(--space-xl)"
+                    class="stagger">
+                    <div style="text-align:center;padding:var(--space-2xl)">
+                        <div style="font-size:3rem;margin-bottom:var(--space-md)">🤝</div>
+                        <h3>Direct Trade</h3>
+                        <p style="color:var(--text-muted);font-size:var(--fs-sm)">Buy directly from farmers, ensuring
+                            fair prices and freshest products.</p>
+                    </div>
+                    <div style="text-align:center;padding:var(--space-2xl)">
+                        <div style="font-size:3rem;margin-bottom:var(--space-md)">📚</div>
+                        <h3>Knowledge Sharing</h3>
+                        <p style="color:var(--text-muted);font-size:var(--fs-sm)">Learn about herbs, farming practices,
+                            and wellness from experts.</p>
+                    </div>
+                    <div style="text-align:center;padding:var(--space-2xl)">
+                        <div style="font-size:3rem;margin-bottom:var(--space-md)">🌱</div>
+                        <h3>Sustainability</h3>
+                        <p style="color:var(--text-muted);font-size:var(--fs-sm)">Support sustainable farming and reduce
+                            the environmental footprint.</p>
+                    </div>
+                    <div style="text-align:center;padding:var(--space-2xl)">
+                        <div style="font-size:3rem;margin-bottom:var(--space-md)">🎁</div>
+                        <h3>Exclusive Perks</h3>
+                        <p style="color:var(--text-muted);font-size:var(--fs-sm)">Get early access to new products,
+                            discounts, and seasonal boxes.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 HerbalNature.</p>
+                <p>Made with 🌿 for a healthier world</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('farmersGrid');
+            if (grid) {
+                FARMERS.forEach(f => {
+                    grid.innerHTML += `<div class="farmer-card">
+            <div class="farmer-avatar">${f.avatar}</div>
+            <h3>${f.name}</h3>
+            <div class="location"><i data-lucide="map-pin" style="width:14px;height:14px"></i> ${f.location}</div>
+            <span class="specialty">${f.specialty}</span>
+            <p class="bio">${f.bio}</p>
+            <div class="farmer-stats">
+              <div class="stat"><span class="value">${f.products}</span><span class="label">Products</span></div>
+              <div class="stat"><span class="value">${f.rating}</span><span class="label">Rating</span></div>
+              <div class="stat"><span class="value">${f.experience}</span><span class="label">Experience</span></div>
+            </div>
+          </div>`;
+                });
+            }
+
+            // Update join button for logged-in users
+            const user = getCurrentUser();
+            const joinBtn = document.getElementById('joinBtn');
+            if (user && joinBtn) {
+                joinBtn.textContent = 'Welcome, ' + user.name + '!';
+                joinBtn.href = '#';
+                joinBtn.onclick = e => e.preventDefault();
+            }
+
+            lucide.createIcons();
+            initScrollReveal();
+        });
+    </script>
+</body>
+
+</html>

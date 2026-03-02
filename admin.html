@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard — HerbalNature</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <div class="admin-page">
+        <button class="admin-menu-toggle" id="adminMenuToggle"><i data-lucide="menu"></i></button>
+
+        <aside class="admin-sidebar" id="adminSidebar">
+            <a href="index.html" class="logo"><i data-lucide="leaf"></i><span>HerbalNature</span></a>
+            <nav class="admin-nav">
+                <a href="#" class="active" data-section="dashboard"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                <a href="#" data-section="products"><i data-lucide="package"></i> Products</a>
+                <a href="#" data-section="orders"><i data-lucide="shopping-cart"></i> Orders</a>
+                <a href="#" data-section="users"><i data-lucide="users"></i> Users</a>
+                <a href="#" data-section="farmers"><i data-lucide="tractor"></i> Farmers</a>
+            </nav>
+            <div class="admin-logout">
+                <a href="#" onclick="logout()"
+                    style="color:var(--sidebar-text);display:flex;align-items:center;gap:8px"><i data-lucide="log-out"
+                        style="width:18px;height:18px"></i> Logout</a>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1 id="sectionTitle">Dashboard</h1>
+                <div class="admin-header-actions">
+                    <button class="theme-toggle"><i data-lucide="moon"></i></button>
+                    <span style="font-size:var(--fs-sm);color:var(--text-muted)" id="adminUser"></span>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div class="admin-content" id="dashboard">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i data-lucide="dollar-sign"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statRevenue">$0</h3>
+                            <p>Total Revenue</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i data-lucide="shopping-cart"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statOrders">0</h3>
+                            <p>Total Orders</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon gold"><i data-lucide="package"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statProducts">24</h3>
+                            <p>Products</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon red"><i data-lucide="users"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statUsers">0</h3>
+                            <p>Users</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin-section">
+                    <div class="admin-section-header">
+                        <h2>Revenue Overview</h2>
+                    </div>
+                    <div class="chart-container" id="revenueChart"></div>
+                    <div class="chart-labels" id="chartLabels"></div>
+                </div>
+
+                <div class="admin-section">
+                    <div class="admin-section-header">
+                        <h2>Recent Orders</h2>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentOrdersBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Products Section -->
+            <div class="admin-content" id="products" style="display:none">
+                <div class="admin-section">
+                    <div class="admin-section-header">
+                        <h2>All Products</h2><button class="btn btn-primary btn-sm"
+                            onclick="showToast('Add product functionality','info')"><i data-lucide="plus"></i> Add
+                            Product</button>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Orders Section -->
+            <div class="admin-content" id="orders" style="display:none">
+                <div class="admin-section">
+                    <div class="admin-section-header">
+                        <h2>All Orders</h2>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Payment</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Users Section -->
+            <div class="admin-content" id="users" style="display:none">
+                <div class="admin-section">
+                    <div class="admin-section-header">
+                        <h2>Registered Users</h2>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Joined</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Farmers Section -->
+            <div class="admin-content" id="farmers" style="display:none">
+                <div class="admin-section">
+                    <div class="admin-section-header">
+                        <h2>Farmer Applications</h2>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Location</th>
+                                <th>Specialty</th>
+                                <th>Experience</th>
+                                <th>Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody id="farmersBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
